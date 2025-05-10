@@ -2,11 +2,14 @@ package tech.encode.uptask.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.encode.uptask.dtos.ProjectDTO;
 import tech.encode.uptask.entities.Project;
 import tech.encode.uptask.servicesinterfaces.IProjectService;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,10 +30,13 @@ public class ProjectController {
     }
 
     @PostMapping
-    public void addProject(@RequestBody ProjectDTO projectDTO) {
+    public ResponseEntity<String> addProject(@RequestBody ProjectDTO projectDTO) {
         ModelMapper m = new ModelMapper();
         Project p = m.map(projectDTO, Project.class);
         pS.addProject(p);
+
+        String msg = "Application successfully registered";
+        return new ResponseEntity<>(msg, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -46,7 +52,10 @@ public class ProjectController {
         pS.updateProject(p);
     }
     @DeleteMapping("/{id}")
-    public void deleteProject(@PathVariable Long id) {
+    public ResponseEntity<String> deleteProject(@PathVariable Long id) {
         pS.deleteProject(id);
+
+        String msg = "Application successfully deleted";
+        return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 }

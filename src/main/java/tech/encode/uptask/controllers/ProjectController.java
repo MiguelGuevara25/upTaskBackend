@@ -32,4 +32,21 @@ public class ProjectController {
         Project p = m.map(projectDTO, Project.class);
         pS.addProject(p);
     }
+
+    @GetMapping("/{id}")
+    public ProjectDTO getProjectById(@PathVariable Long id) {
+        ModelMapper m = new ModelMapper();
+        return m.map(pS.getProjectById(id), ProjectDTO.class);
+    }
+
+    @PutMapping()
+    public void updateProject(@RequestBody ProjectDTO projectDTO) {
+        ModelMapper m = new ModelMapper();
+        Project p = m.map(projectDTO,Project.class);
+        pS.updateProject(p);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteProject(@PathVariable Long id) {
+        pS.deleteProject(id);
+    }
 }

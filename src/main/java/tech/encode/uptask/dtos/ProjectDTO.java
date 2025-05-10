@@ -1,9 +1,9 @@
 package tech.encode.uptask.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import tech.encode.uptask.entities.Task;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,4 +14,5 @@ public class ProjectDTO {
     private String projectName;
     private String clientName;
     private String description;
+    private List<Task> tasks;
 }

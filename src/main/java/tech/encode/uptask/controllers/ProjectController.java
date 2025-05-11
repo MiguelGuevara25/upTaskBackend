@@ -9,11 +9,11 @@ import tech.encode.uptask.dtos.ProjectDTO;
 import tech.encode.uptask.entities.Project;
 import tech.encode.uptask.servicesinterfaces.IProjectService;
 
-import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/projects")
 public class ProjectController {
     @Autowired
